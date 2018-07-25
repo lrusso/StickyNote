@@ -36,7 +36,7 @@
 				$.ajax({
 					data: "mypostit=" + postitText,
 					url: "url_where_php_is_located.php",
-					method: "POST", // or GET
+					type: "POST", // or GET
 					success: function(msg)
 						{
 						$("#stickynoteok").fadeIn();
