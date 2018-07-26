@@ -32,18 +32,23 @@
 			var typingTimer;					// timer identifier
 			var doneTypingInterval = 2000;		// time in ms, 2 seconds after typing for saving the data
 
+			function encodeText(e)
+				{
+				return e.replace(/[^]/g,function(e){return"&#"+e.charCodeAt(0)+";"});
+				}
+
 			function doneTyping()
 				{
 				var postitText = document.getElementById("stickynotetext").value;
 				var postitTextConverted = ""
 				if (postitText.length>0)
 					{
-					postitTextConverted = encodeURI(postitText);
+					postitTextConverted = encodeText(postitText);
 					}
 
 				$.ajax({
 						url: "StickyNoteUpdater.php",
-						data: "mypostit=" + postitTextConverted + "&length=" + postitText.length,
+						data: "mypostit=" + encodeURIComponent(postitTextConverted) + "&length=" + postitTextConverted.length,
 						type: "POST", // or GET
 						success: function(msg)
 							{

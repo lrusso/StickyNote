@@ -5,10 +5,9 @@ if ($_POST[length]!="")
 		{
 		if ($_POST[length]!="0")
 			{
-			if (strlen(utf8_decode($_POST[mypostit]))==$_POST[length])
+			if (strlen($_POST[mypostit])==$_POST[length])
 				{
-				// THE FINAL VALUE IS htmlentities($_POST[mypostit])
-
+				// THE FINAL VALUE IS $_POST[mypostit]
 
 				}
 				else
@@ -23,7 +22,6 @@ if ($_POST[length]!="")
 			if (strlen($_POST[mypostit])==0 AND $_POST[length]=="0")
 				{
 				// THE FINAL VALUE IS EMPTY
-
 
 				}
 				else
