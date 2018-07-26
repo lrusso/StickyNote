@@ -6,21 +6,24 @@
 	<body>
 		<style>
 			body{background:#B2CCCC;}
-			ul{padding-top:25px;}
-			#stickynote li{position:relative;width:300px;background:#FFFF99;list-style-type:none;-webkit-box-shadow:0 2px 12px rgba(0,0,0,.5);-moz-box-shadow:0 2px 12px rgba(0,0,0,.5);box-shadow:0 1px 2px #000;}
-			#stickynote li::before{content:" ";display:block;position:absolute;left:115px;top:-15px;width:75px;height:25px;z-index:2;background-color:rgba(243,245,228,0.5);border:2px solid rgba(255,255,255,0.5);-webkit-box-shadow:0 0 5px #888;-moz-box-shadow:0 0 5px #888;box-shadow:1px 1px 1px #000;-webkit-transform:rotate(-6deg);-moz-transform:rotate(-6deg);-o-transform:rotate(-6deg);}
-			#stickynotetext{background-color:#FFFF99;padding-top:25px;padding-left:10px;padding-right:10px;padding-bottom:0px;font-family:Arial;font-size:14px;border:0px solid silver;resize:none;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+			#stickynote{padding-top:20px;z-index:999;}
+			#stickynote_item{padding:0;margin:0;}
+			#stickynote_item li{position:relative;width:300px;background:#FFFF99;list-style-type:none;-webkit-box-shadow:0 2px 12px rgba(0,0,0,.5);-moz-box-shadow:0 2px 12px rgba(0,0,0,.5);box-shadow:0 1px 2px #000;}
+			#stickynote_item li::before{content:" ";display:block;position:absolute;left:115px;top:-15px;width:75px;height:25px;z-index:2;background-color:rgba(243,245,228,0.5);border:2px solid rgba(255,255,255,0.5);-webkit-box-shadow:0 0 5px #888;-moz-box-shadow:0 0 5px #888;box-shadow:1px 1px 1px #000;-webkit-transform:rotate(-6deg);-moz-transform:rotate(-6deg);-o-transform:rotate(-6deg);}
+			#stickynotetext{background-color:#FFFF99;padding-top:25px;padding-left:11px;padding-right:11px;padding-bottom:0px;font-family:Arial;font-size:14px;border:0px solid silver;resize:none;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
 			#stickynoteok{width:130px;background-color:#3a76b1;color:white;font-family:Arial;font-size:14px;text-align:center;padding:5px 0;margin:0 auto;border-radius:6px;position:absolute;left:0;right:0;top:-13px;z-index:999;display:none;}
 			#stickynoteerror{width:130px;background-color:#ff4c4c;color:white;font-family:Arial;font-size:14px;text-align:center;padding:5px 0;margin:0 auto;border-radius:6px;position:absolute;left:0;right:0;top:-13px;z-index:999;display:none;}
 		</style>
 
-		<ul id="stickynote">
-			<li>
-				<div id="stickynoteok">Saved.</div>
-				<div id="stickynoteerror">Error while saving.</div>
-				<textarea name="text" id="stickynotetext" oninput="checkingInputData()">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at quam nunc. Nulla ac mauris fringilla, auctor ex ac, lobortis augue. In eu tempor nisl. Duis consectetur lacus eget felis aliquet, id tincidunt elit malesuada. Aenean interdum dui ac quam dignissim, ac posuere sapien tristique. Pellentesque faucibus, dui at vehicula semper, lacus mauris tristique nisi, vitae porta justo libero at purus. Nulla eu dui ante. In hac habitasse platea dictumst. Nulla facilisi. Ut id tellus at sem viverra maximus. Phasellus at feugiat dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris euismod arcu est, sed pellentesque nulla fringilla sit amet.</textarea>
-			</li>
-		</ul>
+		<div id="stickynote">
+			<ul id="stickynote_item">
+				<li>
+					<div id="stickynoteok">Nota guardada.</div>
+					<div id="stickynoteerror">Error al guardar.</div>
+						<textarea name="text" id="stickynotetext" oninput="checkingInputData()">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac imperdiet ipsum. Nam congue nunc nec porttitor tempus. Pellentesque aliquet facilisis neque, id ultrices nibh sagittis id. Maecenas ultricies felis vitae mi tincidunt viverra. Vestibulum ac dui sit amet magna consequat efficitur. Suspendisse ultrices, libero non fringilla sagittis, nunc lectus aliquam nulla, et dictum odio turpis ut metus. Phasellus risus lorem, efficitur vitae ultrices ac, egestas a risus. Sed vel eleifend nunc. Sed eget interdum orci. Ut tellus metus, bibendum non nisi sed, rhoncus auctor est.</textarea>
+				</li>
+			</ul>
+		</div>
 
 		<script>
 			// jQuery 1.5
