@@ -35,39 +35,53 @@
 			function doneTyping()
 				{
 				var postitText = document.getElementById("stickynotetext").value;
+				var postitTextConverted = ""
+				if (postitText.length>0)
+					{
+					postitTextConverted = encodeURI(postitText);
+					}
 
 				$.ajax({
-					data: "mypostit=" + postitText,
-					url: "url_where_php_is_located.php",
-					type: "POST", // or GET
-					success: function(msg)
-						{
-						$("#stickynoteok").fadeIn();
-						document.getElementById("stickynoteerror").style.display = "none";
-						setTimeout(function()
+						url: "StickyNoteUpdater.php",
+						data: "mypostit=" + postitTextConverted + "&length=" + postitText.length,
+						type: "POST", // or GET
+						success: function(msg)
 							{
-							$("#stickynoteok").fadeOut();
-							}, 2000);
-						},
-					error: function(msg)
-						{
-						$("#stickynoteerror").fadeIn();
-						document.getElementById("stickynoteok").style.display = "none";
-						setTimeout(function()
+							$("#stickynoteok").fadeIn();
+							document.getElementById("stickynoteerror").style.display = "none";
+							setTimeout(function()
+								{
+								$("#stickynoteok").fadeOut();
+								}, 2000);
+							},
+						error: function(xhr, textStatus, error)
 							{
-							$("#stickynoteerror").fadeOut();
-							}, 2000);
-						},
-					fail: function(xhr, status, error)
-						{
-						$("#stickynoteerror").fadeIn();
-						document.getElementById("stickynoteok").style.display = "none";
-						setTimeout(function()
+							$("#stickynoteerror").fadeIn();
+							document.getElementById("stickynoteok").style.display = "none";
+							setTimeout(function()
+								{
+								$("#stickynoteerror").fadeOut();
+								}, 2000);
+							},
+						fail: function(xhr, status, error)
 							{
-							$("#stickynoteerror").fadeOut();
-							}, 2000);
-						}
-					});
+							$("#stickynoteerror").fadeIn();
+							document.getElementById("stickynoteok").style.display = "none";
+							setTimeout(function()
+								{
+								$("#stickynoteerror").fadeOut();
+								}, 2000);
+							},
+						failure: function()
+							{
+							$("#stickynoteerror").fadeIn();
+							document.getElementById("stickynoteok").style.display = "none";
+							setTimeout(function()
+								{
+								$("#stickynoteerror").fadeOut();
+								}, 2000);
+							},
+						});
 				}
 
 			function autoResizeTextArea()
