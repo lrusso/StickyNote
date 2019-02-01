@@ -92,8 +92,11 @@
 
 			function autoResizeTextArea()
 				{
+				var scrollLeft = window.pageXOffset || (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+				var scrollTop  = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
 				document.getElementById("stickynotetext").style.height = 0;
 				document.getElementById("stickynotetext").style.height = (document.getElementById("stickynotetext").scrollHeight + 2) + "px";
+				window.scrollTo(scrollLeft, scrollTop);
 				}
 
 			function checkingInputData()
