@@ -3,8 +3,6 @@
 	<head>
 		<title>Sticky Note</title>
 		<meta charset="UTF-8">
-	</head>
-	<body>
 		<style>
 			body{background:#B2CCCC;}
 			#stickynote{padding-top:20px;z-index:999;}
@@ -15,6 +13,8 @@
 			#stickynoteok{width:130px;background-color:#3a76b1;border:1px solid #2c5987;color:white;font-family:Arial;font-size:14px;text-align:center;padding:5px 0;margin:0 auto;border-radius:6px;position:absolute;left:0;right:0;top:-13px;z-index:999;display:none;}
 			#stickynoteerror{width:130px;background-color:#ff4c4c;border:1px solid #ff1a1a;color:white;font-family:Arial;font-size:14px;text-align:center;padding:5px 0;margin:0 auto;border-radius:6px;position:absolute;left:0;right:0;top:-13px;z-index:999;display:none;}
 		</style>
+	</head>
+	<body>
 
 		<div id="stickynote">
 			<ul id="stickynote_item">
@@ -47,20 +47,42 @@
 					postitTextConverted = encodeText(postitText);
 					}
 
-				$.ajax({
-						url: "StickyNoteUpdater.php",
-						data: "mypostit=" + encodeURIComponent(postitTextConverted) + "&length=" + postitTextConverted.length,
-						type: "POST", // or GET
-						success: function(msg)
+				var url = "StickyNoteUpdater.php";
+
+				var http = new XMLHttpRequest();
+				var params = "mypostit=" + encodeURIComponent(postitTextConverted) + "&length=" + postitTextConverted.length;
+				http.open('POST', url, true);
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				http.timeout = 3000;
+
+				http.onreadystatechange = function()
+					{//Call a function when the state changes.
+					if(http.readyState == 4)
+						{
+						var response = http.responseText;
+						if (response.length>0)
 							{
-							$("#stickynoteok").fadeIn();
-							document.getElementById("stickynoteerror").style.display = "none";
-							setTimeout(function()
+							var responseData = response.substr(0,1);
+							if (responseData=="1")
 								{
-								$("#stickynoteok").fadeOut();
-								}, 2000);
-							},
-						error: function(xhr, textStatus, error)
+								$("#stickynoteok").fadeIn();
+								document.getElementById("stickynoteerror").style.display = "none";
+								setTimeout(function()
+									{
+									$("#stickynoteok").fadeOut();
+									}, 2000);
+								}
+								else
+								{
+								$("#stickynoteerror").fadeIn();
+								document.getElementById("stickynoteok").style.display = "none";
+								setTimeout(function()
+									{
+									$("#stickynoteerror").fadeOut();
+									}, 2000);
+								}
+							}
+							else
 							{
 							$("#stickynoteerror").fadeIn();
 							document.getElementById("stickynoteok").style.display = "none";
@@ -68,26 +90,14 @@
 								{
 								$("#stickynoteerror").fadeOut();
 								}, 2000);
-							},
-						fail: function(xhr, status, error)
-							{
-							$("#stickynoteerror").fadeIn();
-							document.getElementById("stickynoteok").style.display = "none";
-							setTimeout(function()
-								{
-								$("#stickynoteerror").fadeOut();
-								}, 2000);
-							},
-						failure: function()
-							{
-							$("#stickynoteerror").fadeIn();
-							document.getElementById("stickynoteok").style.display = "none";
-							setTimeout(function()
-								{
-								$("#stickynoteerror").fadeOut();
-								}, 2000);
-							},
-						});
+							}
+						}
+					};
+
+				http.onerror = function (){$("#stickynoteerror").fadeIn();document.getElementById("stickynoteok").style.display = "none";setTimeout(function(){$("#stickynoteerror").fadeOut();}, 2000);};
+				http.ontimeout = function (e){$("#stickynoteerror").fadeIn();document.getElementById("stickynoteok").style.display = "none";setTimeout(function(){$("#stickynoteerror").fadeOut();}, 2000);};
+
+				http.send(params);
 				}
 
 			function autoResizeTextArea()
