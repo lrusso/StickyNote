@@ -30,9 +30,6 @@
 			var typingTimer;					// timer identifier
 			var doneTypingInterval = 2000;		// time in ms, 2 seconds after typing for saving the data
 
-			document.getElementById("stickynoteok").setAttribute("style","opacity:0;-moz-opacity:0;filter:alpha(opacity=0)");
-			document.getElementById("stickynoteerror").setAttribute("style","opacity:0;-moz-opacity:0;filter:alpha(opacity=0)");
-
 			function encodeText(e)
 				{
 				return e.replace(/[^]/g,function(e){return"&#"+e.charCodeAt(0)+";"});
@@ -70,7 +67,7 @@
 								setTimeout(function()
 									{
 									document.getElementById("stickynoteok").style.display = "none";
-									}, 2000);
+									}, 3000);
 								}
 								else
 								{
@@ -79,7 +76,7 @@
 								setTimeout(function()
 									{
 									document.getElementById("stickynoteerror").style.display = "none";
-									}, 2000);
+									}, 3000);
 								}
 							}
 							else
@@ -89,7 +86,7 @@
 							setTimeout(function()
 								{
 								document.getElementById("stickynoteerror").style.display = "none";
-								}, 2000);
+								}, 3000);
 							}
 						}
 					};
@@ -101,7 +98,7 @@
 					setTimeout(function()
 						{
 						document.getElementById("stickynoteerror").style.display = "none";
-						}, 2000);
+						}, 3000);
 					};
 				http.ontimeout = function (e)
 					{
@@ -110,7 +107,7 @@
 					setTimeout(function()
 						{
 						document.getElementById("stickynoteerror").style.display = "none";
-						}, 2000);
+						}, 3000);
 					};
 
 				http.send(params);
