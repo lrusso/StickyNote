@@ -91,24 +91,8 @@
 						}
 					};
 
-				http.onerror = function ()
-					{
-					document.getElementById("stickynoteerror").style.display = "block";
-					document.getElementById("stickynoteok").style.display = "none";
-					setTimeout(function()
-						{
-						document.getElementById("stickynoteerror").style.display = "none";
-						}, 3000);
-					};
-				http.ontimeout = function (e)
-					{
-					document.getElementById("stickynoteerror").style.display = "block";
-					document.getElementById("stickynoteok").style.display = "none";
-					setTimeout(function()
-						{
-						document.getElementById("stickynoteerror").style.display = "none";
-						}, 3000);
-					};
+				http.onerror = function (){document.getElementById("stickynoteerror").style.display = "block";document.getElementById("stickynoteok").style.display = "none";setTimeout(function(){document.getElementById("stickynoteerror").style.display = "none";}, 3000);};
+				http.ontimeout = function (e){document.getElementById("stickynoteerror").style.display = "block";document.getElementById("stickynoteok").style.display = "none";setTimeout(function(){document.getElementById("stickynoteerror").style.display = "none";}, 3000);};
 
 				http.send(params);
 				}
