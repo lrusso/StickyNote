@@ -3,6 +3,6 @@ StickyNote in JavaScript with an autosave feature 2 seconds after the user stops
 
 ![alt screenshot](https://raw.githubusercontent.com/lrusso/StickyNote/master/StickyNote.png)
 
-## Demo:
+## Demo
 
 https://lrusso.github.io/StickyNote/StickyNote.htm
